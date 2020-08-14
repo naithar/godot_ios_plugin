@@ -6,8 +6,5 @@
 //  Copyright © 2020 Godot. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
-@interface godot_plugin : NSObject
-
-@end
+void godot_plugin_init();
+void godot_plugin_deinit();

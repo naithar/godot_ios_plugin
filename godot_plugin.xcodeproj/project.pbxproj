@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90CAAA9924E71FF10013969F /* godot_plugin.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CAAA9824E71FF10013969F /* godot_plugin.m */; };
-		90CAAA9A24E71FF10013969F /* godot_plugin.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 90CAAA9724E71FF10013969F /* godot_plugin.h */; };
+		90CAAA9924E71FF10013969F /* godot_plugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90CAAA9824E71FF10013969F /* godot_plugin.mm */; };
+		90CAAAA424E724C50013969F /* godot_plugin_implementation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90CAAAA324E724C50013969F /* godot_plugin_implementation.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +18,6 @@
 			dstPath = "include/$(PRODUCT_NAME)";
 			dstSubfolderSpec = 16;
 			files = (
-				90CAAA9A24E71FF10013969F /* godot_plugin.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -27,7 +26,9 @@
 /* Begin PBXFileReference section */
 		90CAAA9424E71FF10013969F /* libgodot_plugin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libgodot_plugin.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90CAAA9724E71FF10013969F /* godot_plugin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = godot_plugin.h; sourceTree = "<group>"; };
-		90CAAA9824E71FF10013969F /* godot_plugin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = godot_plugin.m; sourceTree = "<group>"; };
+		90CAAA9824E71FF10013969F /* godot_plugin.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = godot_plugin.mm; sourceTree = "<group>"; };
+		90CAAAA324E724C50013969F /* godot_plugin_implementation.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = godot_plugin_implementation.mm; sourceTree = "<group>"; };
+		90CAAAA524E724D00013969F /* godot_plugin_implementation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = godot_plugin_implementation.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +47,7 @@
 			children = (
 				90CAAA9624E71FF10013969F /* godot_plugin */,
 				90CAAA9524E71FF10013969F /* Products */,
+				90CAAAA824E72A8A0013969F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,9 +63,18 @@
 			isa = PBXGroup;
 			children = (
 				90CAAA9724E71FF10013969F /* godot_plugin.h */,
-				90CAAA9824E71FF10013969F /* godot_plugin.m */,
+				90CAAA9824E71FF10013969F /* godot_plugin.mm */,
+				90CAAAA524E724D00013969F /* godot_plugin_implementation.h */,
+				90CAAAA324E724C50013969F /* godot_plugin_implementation.mm */,
 			);
 			path = godot_plugin;
+			sourceTree = "<group>";
+		};
+		90CAAAA824E72A8A0013969F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +134,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90CAAA9924E71FF10013969F /* godot_plugin.m in Sources */,
+				90CAAAA424E724C50013969F /* godot_plugin_implementation.mm in Sources */,
+				90CAAA9924E71FF10013969F /* godot_plugin.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,7 +192,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -232,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -244,6 +256,34 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/godot",
+					"$(SRCROOT)/godot/main",
+					"$(SRCROOT)/godot/core",
+					"$(SRCROOT)/godot/core/os",
+					"$(SRCROOT)/godot/servers",
+					"$(SRCROOT)/godot/platform",
+					"$(SRCROOT)/godot/platform/iphone",
+					"$(SRCROOT)/godot/modules",
+					"$(SRCROOT)/godot/scene",
+					"$(SRCROOT)/godot/drivers",
+					"$(SRCROOT)/godot/trirdparty",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/godot/bin",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-fcxx-modules",
+					"-g",
+					"-DDEBUG",
+					"-DDEBUG_ENABLED",
+					"-DDEBUG_MEMORY_ALLOC",
+					"-DDISABLE_FORCED_INLINE",
+					"-DTYPED_METHOD_BIND",
+					"-fmodules",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -255,6 +295,28 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/godot",
+					"$(SRCROOT)/godot/main",
+					"$(SRCROOT)/godot/core",
+					"$(SRCROOT)/godot/core/os",
+					"$(SRCROOT)/godot/servers",
+					"$(SRCROOT)/godot/platform",
+					"$(SRCROOT)/godot/platform/iphone",
+					"$(SRCROOT)/godot/modules",
+					"$(SRCROOT)/godot/scene",
+					"$(SRCROOT)/godot/drivers",
+					"$(SRCROOT)/godot/trirdparty",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/godot/bin",
+				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = (
+					"-fcxx-modules",
+					"-fmodules",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

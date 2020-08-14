@@ -1,0 +1,1 @@
+# Godot iOS Plugin template

@@ -1,0 +1,17 @@
+[config]
+name="PluginExample"
+binary="plugin.a"
+
+initialization="godot_plugin_init"
+deinitialization="godot_plugin_deinit"
+
+[dependencies]
+linked=[]
+embedded=[]
+system=[]
+
+capabilities=[]
+
+files=[]
+
+[plist]
