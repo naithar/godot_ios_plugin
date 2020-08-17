@@ -74,6 +74,7 @@ if env['platform'] == "ios":
     env['target_path'] += 'ios/'
     env.Append(CCFLAGS=['-arch', env['arch'], "-isysroot", "$IPHONESDK", "-stdlib=libc++", '-isysroot', sdk_path])
     env.Append(CXXFLAGS=['-std=c++17'])
+    env.Append(CCFLAGS=['-DPTRCALL_ENABLED'])
 
     if env['target'] in ('debug', 'd'):
         env.Append(CCFLAGS=['-g', '-O2', '-DDEBUG', '-DDEBUG_ENABLED', '-DDEBUG_MEMORY_ALLOC', '-DDISABLE_FORCED_INLINE', '-DTYPED_METHOD_BIND'])
